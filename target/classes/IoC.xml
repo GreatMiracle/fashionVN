@@ -1,0 +1,88 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+
+       xsi:schemaLocation="
+
+        http://www.springframework.org/schema/beans
+
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+
+        http://www.springframework.org/schema/mvc
+
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+
+        http://www.springframework.org/schema/context
+
+        http://www.springframework.org/schema/context/spring-context.xsd
+
+        http://www.springframework.org/schema/tx
+
+        https://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+
+    <bean name="nhanvien" class="com.thoitrangshop.entity.NhanVien">
+<!--        <property name="tenNhanVien" value="NguyenTrungKien"/>-->
+    </bean>
+
+<!--    <bean name="customer" class="com.thoitrangshop.entity.Customer"/>-->
+<!--    <bean name="sanPham" class="com.thoitrangshop.entity.SanPham"/>-->
+<!--    <bean name="sanPham" class="com.thoitrangshop.entity.ChiTietHoaDonID"/>-->
+<!--    <bean name="sanPham" class="com.thoitrangshop.entity.ChiTietHoaDon"/>-->
+<!--    <bean name="sanPham" class="com.thoitrangshop.entity.MauSanPham"/>-->
+<!--    <bean name="sanPham" class="com.thoitrangshop.entity.SizeSanPham"/>-->
+<!--    <bean name="sanPham" class="com.thoitrangshop.entity.DanhMucSanPham"/>-->
+<!--    <bean name="sanPham" class="com.thoitrangshop.entity.ChucVu"/>-->
+<!--    <bean name="sanPham" class="com.thoitrangshop.entity.ChiTietSanPham"/>-->
+<!--    <bean name="sanPham" class="com.thoitrangshop.entity.HoaDon"/>-->
+<!--    <bean name="sanPham" class="com.thoitrangshop.entity.KhuyenMai"/>-->
+
+
+
+<!--    <bean name="dbThoiTrang" class="com.thoitrangshop.entity.DatabaseThoitrang">-->
+<!--       <property name="dataSource" ref="dataSource"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">-->
+<!--        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
+<!--        <property name="url" value="jdbc:mysql://localhost:3306/thoitrangshop"/>-->
+<!--        <property name="username" value="root"/>-->
+<!--        <property name="password" value="1234"/>-->
+<!--    </bean>-->
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+<!--        <property name="url" value="jdbc:mysql://localhost:3306/thoitrangshop"/>-->
+        <property name="url" value="jdbc:mysql://localhost:3306/dbfashionvietnam"/>
+        <property name="username" value="root"/>
+        <property name="password" value="1234"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.thoitrangshop.entity"/>
+
+        <property name="hibernateProperties">
+<!--            <value>-->
+<!--                hibernate.dialect=org.hibernate.dialect.MySQLDialect-->
+<!--            </value>-->
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManage" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManage"/>
+
+</beans>

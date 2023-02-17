@@ -59,9 +59,12 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 <!--        <property name="url" value="jdbc:mysql://localhost:3306/thoitrangshop"/>-->
-        <property name="url" value="jdbc:mysql://localhost:3306/dbfashionvietnam"/>
-        <property name="username" value="root"/>
-        <property name="password" value="1234"/>
+<!--        <property name="url" value="jdbc:mysql://localhost:3306/dbfashionvietnam"/>-->
+<!--        <property name="username" value="root"/>-->
+<!--        <property name="password" value="1234"/>-->
+        <property name="url" value="jdbc:mysql://b0d8d32de2503b:27eb0696@us-cdbr-east-06.cleardb.net/heroku_735f31f04058961?reconnect=true"/>
+        <property name="username" value="b0d8d32de2503b"/>
+        <property name="password" value="27eb0696"/>
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
